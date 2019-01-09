@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from rest_framework import viewsets
 
-from django.shortcuts import render
+from .models import Post
+from .serializers import PostSerializer
 
-# Create your views here.
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('published_date')
+    serializer_class = PostSerializer
